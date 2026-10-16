@@ -195,6 +195,9 @@
     <button class="tmem" data-p="victor" type="button" aria-pressed="false" style="--pc:#9CC3FF; --pt:rgba(156,195,255,.12)">
       <span class="tname"><span class="dot"></span>Victor <span class="trole">conteúdo · seo</span></span>
       <span class="tbrief">Banco de ideias → calendário editorial: constância que o algoritmo premia.</span></button>
+    <button class="tmem" data-p="marcos" type="button" aria-pressed="false" style="--pc:#E8B23A; --pt:rgba(232,178,58,.14)">
+      <span class="tname"><span class="dot"></span>Marcos <span class="trole">saas · Caos3D</span></span>
+      <span class="tbrief">Toca o Caos3D, o app da casa: o acervo vira ferramenta pra quem vende impressão 3D.</span></button>
   </div>
 
   <div id="cloud" aria-label="mapa do ecossistema">
@@ -428,7 +431,11 @@
     victor:{n:"Victor", role:"conteúdo · seo", color:"#9CC3FF",
       story:"Banco de ideias → calendário editorial → roteiro da semana no @caostf. O alcance que o algoritmo premia traz gente nova pra loja e pros anúncios — constância virando chegada de cliente.",
       nodes:["conteudo","catalogo","clientes"],
-      flow:["conteudo","catalogo","clientes","financeiro"]}
+      flow:["conteudo","catalogo","clientes","financeiro"]},
+    marcos:{n:"Marcos", role:"saas · Caos3D", color:"#E8B23A",
+      story:"O acervo da casa alimenta o Caos3D e volta como ferramenta: orçamento, fila e custo pra quem vende impressão 3D — o app controla o filamento e conversa com as duas K2. Marcos toca o SaaS.",
+      nodes:["caos3d"],
+      flow:["conhecimento","presets","caos3d","filamento","k2base","k2plus"]}
   };
   var hintHTML = '<span class="cloud-hint">Toque numa palavra do mapa: a ligação acende e a explicação aparece aqui. Ou clique numa pessoa do time.</span>';
   var els = {}; var mobEls = {}; var neighbors = {}; var sel = null; var selP = null;
