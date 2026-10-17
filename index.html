@@ -59,7 +59,7 @@
     background:var(--warn); color:#15120F; border:none; box-shadow:0 0 0 6px rgba(249,115,22,.12)}
   .w.center.sel{box-shadow:0 0 0 8px rgba(249,115,22,.22)}
   #cloud-info{margin-top:12px; background:var(--panel); border:1px solid var(--edge); border-radius:10px;
-    padding:14px 16px; min-height:74px; font-size:14.5px; color:#E4DCCC}
+    padding:11px 15px; font-size:13.5px; color:var(--mut)}
   #cloud-info b{color:var(--warn)}
   .cloud-hint{color:var(--mut); font-size:13.5px}
   .cloud-mobile{display:none; flex-wrap:wrap; gap:7px}
@@ -83,7 +83,6 @@
   table{width:100%; border-collapse:collapse; font-size:14px; margin-top:8px}
   th,td{padding:9px 10px; border-bottom:1px solid #3b322a66; text-align:left; vertical-align:top}
   th{color:var(--mut); font-weight:600; font-size:12px; letter-spacing:.4px}
-  td .val{font-family:"Arial Black",Impact,sans-serif; font-size:13.5px; color:var(--paper); white-space:nowrap}
   .note{color:var(--mut); font-size:12.5px; margin-top:8px}
   /* cards projetos */
   .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
@@ -94,18 +93,15 @@
     color:#15120F; background:var(--ok); border-radius:999px; padding:2px 10px; font-weight:700}
   .card .st.wait{background:#5B4A2E; color:#F4EFE6}
   .card .st.dev{background:var(--iris); color:#fff}
+  .card .st.a3d{background:var(--warn); color:#15120F}
+  .card .st.ama{background:#E8B23A; color:#15120F}
+  .card .st.ate{background:#9CC3FF; color:#15120F}
+  .card .st.age{background:#0FA3A3; color:#15120F}
   /* metas + pendencias */
   .meta{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .mrow{background:var(--panel); border:1px solid var(--edge); border-radius:12px; padding:14px 16px}
   .mrow b{color:var(--warn)}
   .mrow .big{font-family:"Arial Black",Impact,sans-serif; font-size:26px; color:var(--paper)}
-  /* numeros */
-  .fin{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
-  .finc{background:var(--panel); border:1px solid var(--edge); border-radius:10px; padding:12px 14px}
-  .finc .v{font-family:"Arial Black",Impact,sans-serif; font-size:21px}
-  .finc .k{font-size:11px; text-transform:uppercase; letter-spacing:1.4px; color:var(--mut); margin-top:3px}
-  .finc .d{font-size:12.5px; color:var(--mut); margin-top:5px}
-  .ok{color:var(--ok)} .stop{color:var(--stop)}
   .foot{margin-top:64px; border-top:1px solid var(--edge); padding-top:16px; color:var(--mut); font-size:12.5px}
   /* v2.5 — faixa do time (atuação de cada um no mapa) */
   .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
@@ -120,21 +116,46 @@
   .tmem .dot{width:9px; height:9px; border-radius:50%; background:var(--pc); flex:none}
   .tmem .trole{color:var(--mut); font-weight:400; font-size:11px; letter-spacing:1.1px; text-transform:uppercase}
   .tmem .tbrief{display:block; color:#D8CFC0; font-size:12.8px; line-height:1.45; margin-top:5px}
-  @media (prefers-reduced-motion: reduce){ #cloud svg line,.w,.tmem{transition:none} }
+  /* v2.7 — prévia (pop-up no hover) + painel lateral em tópicos */
+  #wpop{position:fixed; display:none; z-index:60; max-width:320px; background:#221D18; border:1px solid var(--warn);
+    border-radius:9px; padding:8px 11px; font-size:12.5px; color:#E9E2D5; pointer-events:none; box-shadow:0 8px 22px rgba(0,0,0,.45)}
+  #wpop b{color:var(--warn)}
+  #side{position:fixed; top:0; right:0; height:100vh; width:min(370px,92vw); z-index:70; background:var(--panel);
+    border-left:1px solid var(--edge); padding:18px 18px 40px; overflow-y:auto; transform:translateX(103%);
+    transition:transform .22s ease; box-shadow:-10px 0 30px rgba(0,0,0,.35)}
+  #side.open{transform:none}
+  #side h3{font-family:"Arial Black",Impact,sans-serif; font-size:19px; letter-spacing:.5px; margin-bottom:8px}
+  #side p{font-size:14px; color:#DED6C8}
+  #side .prole{font-family:"Segoe UI",system-ui,sans-serif; font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--mut)}
+  #side .spt{font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--warn); margin:14px 0 6px}
+  #side ul{list-style:none}
+  #side li{font-size:13.6px; color:#E4DCCC; padding:4px 0 4px 16px; position:relative}
+  #side li::before{content:"–"; position:absolute; left:0; color:var(--warn)}
+  #side .chips{display:flex; flex-wrap:wrap; gap:6px}
+  #side .chip{cursor:pointer; font:inherit; font-size:12.5px; color:#E9E2D5; background:#221D18;
+    border:1px solid var(--edge); border-radius:999px; padding:4px 10px}
+  #side .chip:hover{border-color:var(--warn)}
+  #side .schain{font-size:13px; color:#D8CFC0; line-height:1.9}
+  #side-close{position:absolute; top:12px; right:12px; cursor:pointer; font:inherit; font-size:12.5px; color:var(--mut);
+    background:none; border:1px solid var(--edge); border-radius:8px; padding:4px 10px}
+  #side-close:hover{color:#fff; border-color:var(--warn)}
+  #side-body{padding-right:6px}
+  @media (prefers-reduced-motion: reduce){ #cloud svg line,.w,.tmem,#side{transition:none} }
   @media (max-width:760px){
     #cloud{display:none}
     .cloud-mobile{display:flex}
   }
   @media print{
     body{background:#fff; color:#111}
+    #side,#wpop{display:none !important}
     .topbar,.foot{border-color:#bbb; color:#333}
-    .stat,.step,.card,.mrow,.finc,#cloud-info,.chart,.mapguide,.findings .find{background:#fff; border-color:#bbb; color:#111}
-    .sub,.note,.stat .k,.finc .d,.finc .k,.mapguide,.foot,.topbar .meta,.find,.step p,.card p,th,.hero .tagline{color:#333}
-    .num,.stat .v,.stat .v em,.finc .v,.step .n,.lead em,h1 em,.mrow .big,.mrow b,.mapguide b,.hero .tagline b,.find b,td .val,h2 .num{color:#111}
+    .stat,.step,.card,.mrow,#cloud-info,.chart,.mapguide,.findings .find{background:#fff; border-color:#bbb; color:#111}
+    .sub,.note,.stat .k,.mapguide,.foot,.topbar .meta,.find,.step p,.card p,th,.hero .tagline{color:#333}
+    .num,.stat .v,.stat .v em,.step .n,.lead em,h1 em,.mrow .big,.mrow b,.mapguide b,.hero .tagline b,.find b,h2 .num{color:#111}
     h2 small{color:#333 !important}
     #cloud-info b{color:#111}
     .hero .caos{color:#B45309; text-shadow:none}
-    .card .st,.card .st.dev,.card .st.wait{background:#ECE7DE !important; color:#111 !important}
+    .card .st,.card .st.dev,.card .st.wait,.card .st.a3d,.card .st.ama,.card .st.ate,.card .st.age{background:#ECE7DE !important; color:#111 !important}
     .btn{background:#fff; color:#111; border-color:#bbb}
     .team .tmem,.team .tmem[aria-pressed="true"]{background:#fff; border-color:#bbb; color:#111}
     .team .tbrief,.team .trole{color:#333}
@@ -153,7 +174,7 @@
 
   <div class="topbar">
     <div class="brand">CAOS<span>TF</span></div>
-    <div class="meta">apresentação · dados de 15/10/2026</div>
+    <div class="meta">apresentação · dados de 17/10/2026</div>
   </div>
 
   <!-- ============ HERO ============ -->
@@ -168,8 +189,8 @@
       <div class="stat"><div class="v"><em>2</em> K2</div><div class="k">impressoras (base + Plus)</div></div>
       <div class="stat"><div class="v">12</div><div class="k">aparelhos resgatados</div></div>
       <div class="stat"><div class="v">7</div><div class="k">rotinas automáticas</div></div>
-      <div class="stat"><div class="v">≈ R$ 30,7 mil</div><div class="k">adicionado pelos sócios</div></div>
-      <div class="stat"><div class="v">30</div><div class="k">anúncios novos até 31/10 (meta)</div></div>
+      <div class="stat"><div class="v">≈ R$ 30,5 mil</div><div class="k">adicionado pelos sócios</div></div>
+      <div class="stat"><div class="v">23</div><div class="k">histórias no quadro da casa (9 ativas + 14 em ideias)</div></div>
     </div>
   </div>
 
@@ -177,7 +198,7 @@
   <h2><span class="num">01</span>O mapa da casa</h2>
   <div class="rule"></div>
   <div class="sub">As peças do ecossistema e como elas se ligam — palavra por palavra ou pessoa por pessoa.</div>
-  <div class="mapguide"><b>Como ler o mapa:</b> o núcleo é o <b>CAOS</b>. Em volta giram quatro fluxos — <b>captura &amp; conhecimento</b> (o que entra vira saber), <b>fabricação</b> (madeira, filamento e as máquinas), <b>venda</b> (loja, anúncios e clientes) e <b>infra 24h</b> (servidor, rede limpa e energia). Clique numa palavra: ela acende as ligações dela e a explicação aparece logo abaixo. Ou clique numa pessoa do time: as conexões que ela atua acendem em sequência, na cor dela.</div>
+  <div class="mapguide"><b>Como ler o mapa:</b> o núcleo é o <b>CAOS</b>. Em volta giram quatro fluxos — <b>captura &amp; conhecimento</b> (o que entra vira saber), <b>fabricação</b> (madeira, filamento e as máquinas), <b>venda</b> (loja, anúncios e clientes) e <b>infra 24h</b> (servidor, rede limpa e energia). Passe o mouse numa palavra pra ver a prévia; clique nela: as ligações acendem e o painel lateral abre com o detalhe em tópicos. Ou clique numa pessoa do time: as conexões que ela atua acendem em sequência, na cor dela.</div>
 
   <div class="team" role="group" aria-label="time — clique para acender a atuação de cada um">
     <button class="tmem" data-p="murilo" type="button" aria-pressed="false" style="--pc:#F97316; --pt:rgba(249,115,22,.13)">
@@ -188,7 +209,7 @@
       <span class="tbrief">Móveis e 3D mão na massa, bastidor virando vídeo e o teste do hardware Apple.</span></button>
     <button class="tmem" data-p="ygor" type="button" aria-pressed="false" style="--pc:#0FA3A3; --pt:rgba(15,163,163,.15)">
       <span class="tname"><span class="dot"></span>Ygor <span class="trole">central + conteúdo</span></span>
-      <span class="tbrief">Dev da central de disparo: anúncio publicado que vira venda.</span></button>
+      <span class="tbrief">Central de disparo + mão na massa no 3D e na marcenaria: anúncio publicado que vira venda.</span></button>
     <button class="tmem" data-p="jef" type="button" aria-pressed="false" style="--pc:#63B27A; --pt:rgba(99,178,122,.15)">
       <span class="tname"><span class="dot"></span>Jef <span class="trole">infraestrutura</span></span>
       <span class="tbrief">Servidores reciclados: bot 24h, NAS, IA local e rede limpa no ar.</span></button>
@@ -209,23 +230,25 @@
     <span class="w" data-key="tarefas" style="left:43%;top:29%">tarefas</span>
     <span class="w" data-key="conhecimento" style="left:68%;top:35%">conhecimento</span>
     <span class="w" data-key="presets"  style="left:83%;top:21%">presets</span>
-    <span class="w" data-key="k2base"   style="left:88%;top:45%">K2 base 260³</span>
-    <span class="w" data-key="k2plus"   style="left:91%;top:58%">K2 Plus 350³</span>
+    <span class="w" data-key="modelos" style="left:70%;top:28%">modelos 3D</span>
+    <span class="w" data-key="k2base"   style="left:88%;top:45%">impressão 3D</span>
     <span class="w" data-key="filamento" style="left:62%;top:13%">filamento</span>
     <span class="w" data-key="secadora" style="left:80%;top:7%">secadora</span>
     <span class="w" data-key="marcenaria" style="left:33%;top:63%">marcenaria</span>
     <span class="w" data-key="madeira"  style="left:41%;top:81%">madeira / desengrosso</span>
+    <span class="w" data-key="sustenta" style="left:48%;top:84%">sustentabilidade</span>
     <span class="w" data-key="painel"   style="left:50%;top:7%">painel da oficina</span>
     <span class="w" data-key="catalogo" style="left:67%;top:64%">loja caostf.com.br</span>
-    <span class="w" data-key="anuncios" style="left:60%;top:87%">anúncios ML</span>
+    <span class="w" data-key="anuncios" style="left:60%;top:87%">anúncios (ML · Shopee · TikTok)</span>
     <span class="w" data-key="central"  style="left:90%;top:73%">central de disparo</span>
-    <span class="w" data-key="meta30"   style="left:73%;top:92%">meta 30 até 31/10</span>
+    <span class="w" data-key="historias" style="left:75%;top:93%">histórias (quadros)</span>
+    <span class="w" data-key="sessoes" style="left:74%;top:52%">sessões dedicadas</span>
     <span class="w" data-key="clientes" style="left:76%;top:77%">clientes</span>
     <span class="w" data-key="financeiro" style="left:20%;top:76%">financeiro</span>
     <span class="w" data-key="servidor" style="left:12%;top:59%">servidor 24h</span>
     <span class="w" data-key="nas"      style="left:5%;top:70%">NAS</span>
     <span class="w" data-key="ia"       style="left:27%;top:89%">IA local</span>
-    <span class="w" data-key="vigia"    style="left:92%;top:32%">vigia 08:00</span>
+    <span class="w" data-key="vigia"    style="left:92%;top:32%">rotinas automáticas</span>
     <span class="w" data-key="sucata"   style="left:10%;top:46%">sucata eletrônica</span>
     <span class="w" data-key="cyberdeck" style="left:8%;top:12%">cyberdeck</span>
     <span class="w" data-key="kit"      style="left:37%;top:6%">kit de entrada</span>
@@ -236,9 +259,7 @@
     <span class="w" data-key="energia" style="left:50%;top:19%">energia 24h</span>
     <span class="w" data-key="ferramentas" style="left:33%;top:73%">ferramentas</span>
   </div>
-  <div id="cloud-info">
-    <span class="cloud-hint">Toque numa palavra do mapa: a ligação acende e a explicação aparece aqui. Ou clique numa pessoa do time.</span>
-  </div>
+  <div id="cloud-info"><span class="cloud-hint">Passe o mouse numa palavra pra ver a prévia; clique pra abrir o painel lateral em tópicos. Ou clique numa pessoa do time.</span></div>
   <div class="cloud-mobile" id="cloud-mobile"></div>
 
   <!-- ============ CICLO ============ -->
@@ -248,11 +269,11 @@
     <div class="step"><div class="n">01 · CAPTURA</div><h3>Nada se perde</h3>
       <p>Ideias, fotos, áudios, vídeos, documentos e links entram pelo grupo do Telegram (bot próprio) e viram arquivo no Drive, com autor e data.</p></div>
     <div class="step"><div class="n">02 · CONHECIMENTO</div><h3>Dica vira ficha técnica</h3>
-      <p>Vídeos são baixados e transcritos; as dicas viram presets testados por máquina e material, com peça de calibração e registro. Quem imprime dá o retorno e o modelo (STL/3MF) sai melhor na próxima. E esse acervo alimenta o Caos3D: melhora as escolhas e pode até gerar STLs.</p></div>
+      <p>Vídeos são baixados e transcritos; as dicas viram presets testados por máquina e material, com peça de calibração e registro. Quem imprime dá o retorno — e aquele conhecimento pode virar ideia, projeto, fila de oficina ou peça 3D. Esse acervo alimenta o Caos3D — e no futuro ele terá IA própria: melhora as escolhas e poderá gerar STLs.</p></div>
     <div class="step"><div class="n">03 · FABRICAÇÃO</div><h3>Madeira + filamento</h3>
       <p>Marcenaria com plano de corte e desengrosso no painel da oficina; duas K2 rodando em paralelo; filamento seco na secadora antes de imprimir.</p></div>
     <div class="step"><div class="n">04 · VENDA</div><h3>Loja + canais</h3>
-      <p>Catálogo em caostf.com.br e anúncios gerados pela central, sem painel. As métricas de cada canal alimentam os próximos ajustes.</p></div>
+      <p>Catálogo em caostf.com.br e anúncios gerados pela central, sem painel. O controle de ads vive aqui: investimento e métricas de cada canal (cliques, visitas) analisados de forma fácil — e o que funciona vira prática pra próxima rodada, com o que não funciona registrado também.</p></div>
   </div>
   <div class="findings">
     <div class="find"><b>Vigia · 08:00</b> — relatório diário no grupo: o que foi feito ontem, frentes de hoje, pendências por pessoa, commits e evolução de cada um.</div>
@@ -264,67 +285,67 @@
   <h2><span class="num">03</span>Os projetos vivos</h2>
   <div class="rule"></div>
   <div class="grid">
-    <div class="card"><h3>Loja caostf.com.br</h3><p>12 produtos, checkout pelo WhatsApp. Falta o cálculo de frete (peso/medidas).</p><span class="st wait">frete pendente</span></div>
-    <div class="card"><h3>Central de disparo</h3><p>Anúncios sem painel: Mercado Livre no ar; Shopee e TikTok em fila comercial.</p><span class="st">ML no ar</span></div>
-    <div class="card"><h3>Caos3D — gestão de impressão</h3><p>App pra donos de impressora: orçamento, fila, spools e custo por hora — e o nosso aprendizado de presets entra nele: melhora as escolhas e pode até gerar STLs. Funcional; fase de divulgação.</p><span class="st dev">divulgação</span></div>
-    <div class="card"><h3>Bot do Telegram</h3><p>Captura tudo (texto, áudio, vídeo, foto, documento) e ainda guarda comprovantes que chegam no grupo.</p><span class="st">no ar</span></div>
-    <div class="card"><h3>Servidor 24h</h3><p>MacBook M1 sem tela como cérebro + notebooks resgatados como nós: bot, backup, IA local e automações — pendrives entram como armazenamento e processamento extra.</p><span class="st wait">montagem</span></div>
-    <div class="card"><h3>Painel da oficina</h3><p>Monitor no balcão: planos de corte com furos, vistas 3D e status das duas impressoras — K2 base e K2 Plus.</p><span class="st">no ar</span></div>
-    <div class="card"><h3>Financeiro</h3><p>Jeito fácil e rápido de contabilizar e controlar tudo o que a gente gasta — e como a empresa é gerida como um todo: entradas, saídas, ativos e rateios, com comprovante no Drive.</p><span class="st">no ar</span></div>
-    <div class="card"><h3>Vigia</h3><p>Relatório 08:00 no grupo + validação de registros. Fecha o dia da equipe em uma mensagem.</p><span class="st">no ar</span></div>
-    <div class="card"><h3>Kit de entrada</h3><p>Trilhas pra cada pessoa nova aprender a trabalhar com agentes dentro do sistema.</p><span class="st dev">pausado</span></div>
-    <div class="card"><h3>Secadora de filamento</h3><p>Geladeira velha + lâmpadas + sílica + sensor: controle automático de temperatura e umidade (Arduino liga e desliga o aquecedor ao bater a meta) — filamento sempre seco.</p><span class="st wait">montagem</span></div>
-    <div class="card"><h3>Mesa do Ruivo</h3><p>Estação de PC sob medida: tampo e gaveteiro de marcenaria + grid 3D de cable management embaixo (canaletas modulares, tudo encaixa e desencaixa), gavetinhas impressas, seletor USB e régua integrados — e a plataforma do gato no braço do monitor.</p><span class="st wait">em desenho</span></div>
-    <div class="card"><h3>Móvel 3 gavetas</h3><p>P1 da fila da marcenaria: plano de corte cotado com furos e montagem passo a passo no painel da oficina.</p><span class="st wait">em produção</span></div>
-    <div class="card"><h3>Fila de impressão 3D</h3><p>O quadro do dia a dia (27 cartões): cada peça entra na fila, roda numa das K2 e sai com preset e registro de validação.</p><span class="st">no ar</span></div>
-    <div class="card"><h3>Halloween &amp; Natal</h3><p>Coleção sazonal pra festa/evento de 31/10 e fim de ano: do chaveirinho-abóbora com switch às peças de Natal — em produção e com peça pronta pra imprimir.</p><span class="st wait">em produção</span></div>
-    <div class="card"><h3>Conteúdo @caostf</h3><p>Banco de ideias → calendário editorial → posts e reels. Conta com token, bio e print prontos; piloto de posts destravado.</p><span class="st wait">destravado</span></div>
-    <div class="card"><h3>Cyberdecks</h3><p>Celular antigo + teclado + case 3D da própria impressora: um posto fixo pra oficina (docs, câmera) e a versão produto, pra vender.</p><span class="st dev">ideia</span></div>
-    <div class="card"><h3>Bot de leilões</h3><p>Varre sites de leilão, avisa no grupo e ajuda no último lance — confiável de verdade só com o servidor 24h no ar.</p><span class="st dev">ideia</span></div>
-    <div class="card"><h3>Totem de fotos (iPad)</h3><p>iPad velho com tela boa: vira totem de fotos se o touch responder; senão, carcaça impressa em 3D e peças.</p><span class="st dev">ideia</span></div>
-    <div class="card"><h3>Energia 24h</h3><p>Nobreak/bateria estilo camping pras impressoras e o servidor (nada cai no meio do trabalho) + energia solar como próximo passo.</p><span class="st dev">ideia</span></div>
-    <div class="card"><h3>Case do servidor</h3><p>Carcaças impressas em 3D pra ancorar os celulares-nó e expor o servidor reciclado com cara de projeto, não de fio solto.</p><span class="st dev">ideia</span></div>
+    <div class="card"><h3>Loja caostf.com.br</h3><p>12 produtos, checkout pelo WhatsApp. Falta o cálculo de frete (peso/medidas).</p><span class="st">venda</span></div>
+    <div class="card"><h3>Central de disparo</h3><p>Anúncios sem painel: Mercado Livre no ar; Shopee e TikTok em fila comercial.</p><span class="st">venda</span></div>
+    <div class="card"><h3>Caos3D — gestão de impressão</h3><p>App pra donos de impressora: orçamento, fila, spools e custo por hora — e o nosso aprendizado de presets entra nele: melhora as escolhas e pode até gerar STLs. Funcional; fase de divulgação.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Bot do Telegram</h3><p>Captura tudo (texto, áudio, vídeo, foto, documento) e ainda guarda comprovantes que chegam no grupo.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Servidor 24h</h3><p>MacBook M1 sem tela como cérebro + notebooks resgatados como nós: bot, backup, IA local e automações — pendrives entram como armazenamento e processamento extra.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Painel da oficina</h3><p>Monitor no balcão: planos de corte com furos, vistas 3D e status das duas impressoras — K2 base e K2 Plus.</p><span class="st ama">marcenaria</span></div>
+    <div class="card"><h3>Financeiro</h3><p>Jeito fácil e rápido de contabilizar e controlar tudo o que a gente gasta — e como a empresa é gerida como um todo: entradas, saídas, ativos e rateios, com comprovante no Drive.</p><span class="st age">gestão</span></div>
+    <div class="card"><h3>Vigia</h3><p>Relatório 08:00 no grupo + validação de registros. Fecha o dia da equipe em uma mensagem.</p><span class="st age">gestão</span></div>
+    <div class="card"><h3>Kit de entrada</h3><p>Trilhas pra cada pessoa nova aprender a trabalhar com agentes dentro do sistema.</p><span class="st dev">conteúdo</span></div>
+    <div class="card"><h3>Secadora de filamento</h3><p>Geladeira velha + lâmpadas + sílica + sensor: controle automático de temperatura e umidade (Arduino liga e desliga o aquecedor ao bater a meta) — filamento sempre seco.</p><span class="st a3d">impressão 3D</span></div>
+    <div class="card"><h3>Mesa do Ruivo</h3><p>Estação de PC sob medida: tampo e gaveteiro de marcenaria + grid 3D de cable management embaixo (canaletas modulares, tudo encaixa e desencaixa), gavetinhas impressas, seletor USB e régua integrados — e a plataforma do gato no braço do monitor.</p><span class="st ama">marcenaria</span></div>
+    <div class="card"><h3>Móvel 3 gavetas</h3><p>P1 da fila da marcenaria: plano de corte cotado com furos e montagem passo a passo no painel da oficina.</p><span class="st ama">marcenaria</span></div>
+    <div class="card"><h3>Fila de impressão 3D</h3><p>O quadro do dia a dia (27 cartões): cada peça entra na fila, roda numa das K2 e sai com preset e registro de validação.</p><span class="st a3d">impressão 3D</span></div>
+    <div class="card"><h3>Halloween &amp; Natal</h3><p>Coleção sazonal pra festa/evento de 31/10 e fim de ano: do chaveirinho-abóbora com switch às peças de Natal — em produção e com peça pronta pra imprimir.</p><span class="st a3d">impressão 3D</span></div>
+    <div class="card"><h3>Conteúdo @caostf</h3><p>Banco de ideias → calendário editorial → posts e reels. Conta com token, bio e print prontos; piloto de posts destravado.</p><span class="st dev">conteúdo</span></div>
+    <div class="card"><h3>Cyberdecks</h3><p>Celular antigo + teclado + case 3D da própria impressora: um posto fixo pra oficina (docs, câmera) e a versão produto, pra vender.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Bot de leilões</h3><p>Varre sites de leilão, avisa no grupo e ajuda no último lance — confiável de verdade só com o servidor 24h no ar.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Totem de fotos (iPad)</h3><p>iPad velho com tela boa: vira totem de fotos se o touch responder; senão, carcaça impressa em 3D e peças.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Energia 24h</h3><p>Nobreak/bateria estilo camping pras impressoras e o servidor (nada cai no meio do trabalho) + energia solar como próximo passo.</p><span class="st ate">tecnologia</span></div>
+    <div class="card"><h3>Case do servidor</h3><p>Carcaças impressas em 3D pra ancorar os celulares-nó e expor o servidor reciclado com cara de projeto, não de fio solto.</p><span class="st a3d">impressão 3D</span></div>
   </div>
 
   <!-- ============ INVENTÁRIO ============ -->
   <h2><span class="num">04</span>O que a casa tem</h2>
   <div class="rule"></div>
-  <div class="sub">Máquinas e ferramentas com valor real; aparelhos resgatados com estimativa de mercado*.</div>
+  <div class="sub">Máquinas e ferramentas da casa; aparelhos resgatados e o papel de cada um hoje.</div>
 
   <table>
     <tr><th>Máquina</th><th>O que faz</th></tr>
-    <tr><td><b>K2 Plus 350³</b> (Creality)</td><td>a maior da casa: peças até 350 mm, câmara fechada pra ABS e materiais exigentes — a produção principal, rodando junto com a base</td></tr>
-    <tr><td><b>K2 base 260³</b> (Creality)</td><td>a primeira: PLA/PETG, testes de perfil e peças até 260 mm — veio do interior na viagem e roda sem parar</td></tr>
+    <tr><td><b>K2 Plus 350³</b></td><td>a maior da casa: peças até 350 mm, câmara fechada pra ABS e materiais exigentes — a produção principal, rodando junto com a base</td></tr>
+    <tr><td><b>K2 base 260³</b></td><td>a primeira: PLA/PETG, testes de perfil e peças até 260 mm — roda sem parar</td></tr>
   </table>
-  <div class="note">As duas K2 funcionando, juntas: <b>R$ 16.492,69</b>.</div>
+  <div class="note">As duas K2 funcionando.</div>
 
   <table>
-    <tr><th>Ferramentas de marcenaria</th><th>Valor</th></tr>
-    <tr><td>Serra meia esquadria BOSCH GCM-254D 1800W + disco FREUD 80 dentes</td><td class="val">R$ 3.131,03</td></tr>
-    <tr><td>Serra circular MAKITA HS7010 1600W</td><td class="val">R$ 708,90</td></tr>
-    <tr><td>Kit de apoio (grampos ×2, respirador, formão, lixas, brocas, luva)</td><td class="val">R$ 460,09</td></tr>
-    <tr><td>Micro retífica Hammer Mi200 135W</td><td class="val">R$ 250,89</td></tr>
-    <tr><td>Argolas de chaveiro (100 pçs, insumo)</td><td class="val">R$ 35,90</td></tr>
+    <tr><th>Ferramentas de marcenaria</th></tr>
+    <tr><td>Serra meia esquadria BOSCH GCM-254D 1800W + disco FREUD 80 dentes</td></tr>
+    <tr><td>Serra circular MAKITA HS7010 1600W</td></tr>
+    <tr><td>Kit de apoio (grampos ×2, respirador, formão, lixas, brocas, luva)</td></tr>
+    <tr><td>Micro retífica Hammer Mi200 135W</td></tr>
+    <tr><td>Lixadeira + router (tupia) — provisória</td></tr>
+    <tr><td>Argolas de chaveiro (100 pçs, insumo)</td></tr>
   </table>
   <div class="note">Estoque de filamento — controle no nosso sistema, com quantidade e cores sempre atualizadas.</div>
 
   <h3 style="margin-top:30px; font-size:18px">Aparelhos resgatados — o que cada um virou</h3>
   <table>
-    <tr><th>Aparelho</th><th>Estimativa*</th><th>Papel hoje</th></tr>
-    <tr><td>MacBook Pro 13 M1 (sem tela, funcionando)</td><td class="val">R$ 2.500–3.500</td><td>cérebro do servidor 24h</td></tr>
-    <tr><td>MacBook Pro 13 A1278 (funciona tudo)</td><td class="val">R$ 1.500–2.500</td><td>oficina / plano B de NAS</td></tr>
-    <tr><td>iPhone X/XS (tela rachada)</td><td class="val">R$ 600–900</td><td>câmera 24/7 (em teste)</td></tr>
-    <tr><td>iPad antigo (tela boa, carcaça gasta)</td><td class="val">R$ 150–280</td><td>totem ou peças (em decisão)</td></tr>
-    <tr><td>Galaxy A32 (tela boa)</td><td class="val">R$ 600–750</td><td>cyberdeck nº 1 / painel</td></tr>
-    <tr><td>Moto E32/E22s (tela ok)</td><td class="val">R$ 350–450</td><td>nó de automação</td></tr>
-    <tr><td>Samsung NP300E4A (sem bateria)</td><td class="val">R$ 300–450</td><td>bloqueio de anúncios / resgate</td></tr>
-    <tr><td>Moto One Vision (tela quebrada, liga)</td><td class="val">R$ 200–350</td><td>servidor Android 24h</td></tr>
-    <tr><td>Moto E6 Play (tela condenada)</td><td class="val">R$ 80–150</td><td>câmera IP / keepalive</td></tr>
-    <tr><td>ASUS K43U (funciona, antigo)</td><td class="val">R$ 250–400</td><td>bloqueio de anúncios / resgate</td></tr>
-    <tr><td>LG K30 (tela quebrada)</td><td class="val">R$ 80–150</td><td>nó dos servidores</td></tr>
-    <tr><td>ASUS Zenfone Max Pro (tela funciona) — doação</td><td class="val">R$ 250–400</td><td>nó de automação</td></tr>
+    <tr><th>Aparelho</th><th>Papel hoje</th></tr>
+    <tr><td>MacBook Pro 13 M1 (sem tela, funcionando)</td><td>cérebro do servidor 24h</td></tr>
+    <tr><td>MacBook Pro 13 A1278 (funciona tudo)</td><td>oficina / plano B de NAS</td></tr>
+    <tr><td>iPhone X/XS (tela rachada)</td><td>câmera 24/7 (em teste)</td></tr>
+    <tr><td>iPad antigo (tela boa, carcaça gasta)</td><td>totem ou peças (em decisão)</td></tr>
+    <tr><td>Galaxy A32 (tela boa)</td><td>cyberdeck nº 1 / painel</td></tr>
+    <tr><td>Moto E32/E22s (tela ok)</td><td>nó de automação</td></tr>
+    <tr><td>Samsung NP300E4A (sem bateria)</td><td>bloqueio de anúncios / resgate</td></tr>
+    <tr><td>Moto One Vision (tela quebrada, liga)</td><td>servidor Android 24h</td></tr>
+    <tr><td>Moto E6 Play (tela condenada)</td><td>câmera IP / keepalive</td></tr>
+    <tr><td>ASUS K43U (funciona, antigo)</td><td>bloqueio de anúncios / resgate</td></tr>
+    <tr><td>LG K30 (tela quebrada)</td><td>nó dos servidores</td></tr>
+    <tr><td>ASUS Zenfone Max Pro (tela funciona) — doação</td><td>nó de automação</td></tr>
   </table>
-  <div class="note">* Estimativa de mercado de usados (out/2026) — não é contabilidade. Os valores de compra real estão conciliados no controle financeiro do Drive.</div>
 
   <!-- ============ PREPARO DA CASA ============ -->
   <h2><span class="num">05</span>O preparo da casa</h2>
@@ -332,7 +353,7 @@
   <div class="sub">O retrato de como a casa está preparada para trabalhar — tudo que os sócios colocaram aqui desde o começo.</div>
 
   <div class="totals">
-    <div class="big">≈ R$ 30,7 mil</div>
+    <div class="big">≈ R$ 30,5 mil</div>
     <div class="lab">adicionado à casa pelos sócios — máquinas, ferramentas, aparelhos, estoque e dinheiro</div>
   </div>
   <div class="note">Aparelhos entram por estimativa de mercado de usados (out/2026); o resto tem comprovante. Tudo conciliado no controle financeiro do Drive.</div>
@@ -341,7 +362,6 @@
   <h2><span class="num">06</span>Pra onde vai</h2>
   <div class="rule"></div>
   <div class="meta">
-    <div class="mrow"><div class="big">30 → 31/10</div><b>Meta de anúncios:</b> 30 anúncios novos no Mercado Livre até 31/10, no mínimo 3 variações por produto. As métricas entram na central e puxam o próximo ajuste.</div>
     <div class="mrow"><b>Servidor 24h completo:</b> bot → NAS (nuvem própria) → IA local → robôs que varrem oportunidades (ex.: leilões). Custo de nuvem: zero.</div>
     <div class="mrow"><b>Caos3D pra fora:</b> abrir o app pra outros donos de impressora com os primeiros 10 usuários beta.</div>
     <div class="mrow"><b>Produtos novos:</b> cardápio digital NFC pra restaurantes e cyberdecks (celular + case 3D feita aqui).</div>
@@ -349,9 +369,14 @@
     <div class="mrow"><b>Como o trabalho fica registrado:</b> toda mudança vira 1 linha no registro do Drive + até o vigia diário publicar o resumo e os commits de cada um.</div>
   </div>
 
+  <aside id="side" aria-hidden="true" aria-label="detalhe">
+    <button id="side-close" type="button">× fechar</button>
+    <div id="side-body"></div>
+  </aside>
+
   <div class="foot">
     Fonte: documentação CaosTF no Google Drive (mapa do ecossistema, registro de mudanças, financeiro, filas e kanbans) ·
-    dados congelados em 15/10/2026 · valores de eletrônicos = estimativa de mercado de usados (out/2026) ·
+    dados congelados em 17/10/2026 · aparelhos resgatados = estimativa de mercado de usados (out/2026) ·
     página offline, sem dependências externas · atualização: pedir ao agente "atualiza a apresentação".
   </div>
 </div>
@@ -360,54 +385,95 @@
 (function(){
   var words = {
     caos:{n:"CAOS", d:"A casa: marcenaria artesanal + impressão 3D + tecnologia reciclada, tudo capturado, registrado e fabricado no mesmo ambiente."},
-    captura:{n:"bot do Telegram", d:"O bot t.me/diariodocaosBot recebe texto, áudio, vídeo, foto, documento e link no grupo — 24h por dia."},
+    captura:{n:"bot do Telegram", d:"Captura no Telegram (canal da casa): recebe texto, áudio, vídeo, foto, documento e link — 24h. Cada item vira arquivo no Drive com autor e data."},
     inbox:{n:"caixa de entrada", d:"Cada mensagem vira um arquivo no Drive com autor e data. É a matéria-prima do sistema."},
     tarefas:{n:"tarefas", d:"O que chega no grupo vira tarefa de verdade: lembrete vira compromisso, pedido vira card, ideia vira banco — e o vigia cobra todo dia."},
     conhecimento:{n:"conhecimento", d:"Vídeos baixados e transcritos viram dicas numeradas com marcação de tempo, organizadas por tema."},
     presets:{n:"presets", d:"Dica testada vira ficha por máquina+material, com peça de calibração e registro de validação. É esse acervo que alimenta o Caos3D."},
+    modelos:{n:"modelos 3D", d:"O acervo de STLs da casa: cada peça modelada, testada e validada vira arquivo pronto pra imprimir de novo — e alimenta o Caos3D."},
     filamento:{n:"filamento", d:"Estoque controlado no nosso sistema: PETG, PLA e ABS — compra só quando precisa."},
     secadora:{n:"secadora", d:"Geladeira adaptada com lâmpadas, sílica e sensor: o Arduino controla temperatura e umidade e liga/desliga o aquecedor na meta — filamento sempre seco."},
-    k2base:{n:"K2 base 260³", d:"A primeira impressora (Creality K2 260³): PLA, testes e peças até 260 mm."},
-    k2plus:{n:"K2 Plus 350³", d:"A segunda (Creality K2 Plus 350³): volume grande e materiais exigentes — a produção principal, rodando com a base."},
+    k2base:{n:"impressão 3D", d:"As duas K2 da casa rodando em paralelo: a base 260³ (PLA/PETG, testes de perfil) e a Plus 350³ (câmara fechada, produção principal e materiais exigentes)."},
     marcenaria:{n:"marcenaria", d:"Móveis sob medida: fila única de projetos, planos de corte e montagem passo a passo."},
-    madeira:{n:"madeira / desengrosso", d:"Pinus comprado + madeira reaproveitada passando no desengrosso: menos desperdício, mais peça."},
+    madeira:{n:"madeira / desengrosso", d:"Pinus comprado + madeira reaproveitada passando no desengrosso: menos desperdício, mais peça — e retalho que vira nova peça."},
+    sustenta:{n:"sustentabilidade", d:"Reaproveitar madeira e dar nova vida ao que ia virar descarte: menos desperdício, mais peça — e uma história que a marca leva pra frente."},
     painel:{n:"painel da oficina", d:"Monitor touch no balcão: planos de corte cotados, vistas 3D das peças e status das duas impressoras (K2 base + K2 Plus)."},
     catalogo:{n:"loja caostf.com.br", d:"A vitrine: 12 produtos entre marcenaria e impressão 3D, com checkout por WhatsApp."},
-    anuncios:{n:"anúncios ML", d:"Anúncios no Mercado Livre criados pela central — vários produtos, várias variações."},
+    anuncios:{n:"anúncios (ML · Shopee · TikTok)", d:"Anúncios criados pela central nos três canais: Mercado Livre no ar, Shopee e TikTok em fila comercial — vários produtos, várias variações."},
     central:{n:"central de disparo", d:"Ferramenta própria de anúncios em vários canais, sem ficar pulando de painel em painel."},
-    meta30:{n:"meta 30 até 31/10", d:"30 anúncios novos no ar até 31/10, mínimo 3 variações por produto. Métricas no mesmo sistema."},
-    clientes:{n:"clientes", d:"Encomendas de chaveiros, suportes, expositores e móveis — cada entrega vira caso no acervo."},
+    historias:{n:"histórias (quadros)", d:"O quadro vivo da casa: cada frente vira história com dono, progresso e área — as tarefas andam nos quadros das áreas (3D · software · marcenaria) e o vigia cobra todo dia."},
+    sessoes:{n:"sessões dedicadas", d:"Prompts pré-prontos por pessoa: cada sessão é uma tarefa a cumprir — gerar móveis, triagem, conteúdo — e o resultado volta pro sistema."},
+    clientes:{n:"clientes", d:"Encomendas reais: chaveiro da Professora (34 un.), suportes, expositores e móveis — cada entrega vira caso no acervo."},
     financeiro:{n:"financeiro", d:"Jeito fácil e rápido de contabilizar e controlar tudo o que a gente gasta — e como a empresa é gerida como um todo. Comprovante no mesmo dia."},
     servidor:{n:"servidor 24h", d:"Aparelhos resgatados rodando sem parar — M1 no comando e os notebooks como nós: bot, backup, automações e IA, sem custo de nuvem. Pendrives entram como armazenamento e processamento extra."},
     nas:{n:"NAS", d:"Nuvem própria: arquivos, fotos e backups moram no servidor da casa — HDs e pendrives resgatados entram no armazenamento."},
     ia:{n:"IA local", d:"Modelos rodando local pra triagem, rascunho e transcrição — sem gastar cota de serviço."},
-    vigia:{n:"vigia 08:00", d:"Todo dia às 08:00 o grupo recebe: resumo de ontem, frentes de hoje, pendências por pessoa e commits."},
+    vigia:{n:"rotinas automáticas", d:"As 7 rotinas da casa: vigia 08:00 (relatório no grupo), bom dia 07:25, backup 03:00, atividade 19:00, links 21:00, captura 3D à noite e servidor vivo."},
     sucata:{n:"sucata eletrônica", d:"MacBooks, celulares e notebooks que cada um tinha parado agora têm função: servidores, câmeras e painéis."},
     cyberdeck:{n:"cyberdeck", d:"Celular antigo + teclado + case feita na própria impressora: posto de trabalho portátil e futuro produto."},
     kit:{n:"kit de entrada", d:"Material de onboarding: instalação, trilhas e contexto pra cada pessoa nova produzir dentro do sistema."},
-    caos3d:{n:"Caos3D (SaaS)", d:"App de gestão pra donos de impressão 3D: orçamento, fila, spools e custo — nosso produto pra fora. O banco de conhecimento alimenta ele (melhora e pode gerar STL) e ele controla o filamento e conversa com as duas K2."},
+    caos3d:{n:"Caos3D (SaaS)", d:"App de gestão pra donos de impressão 3D: orçamento, fila, spools e custo — nosso produto pra fora. O acervo da casa alimenta ele — e no futuro ele terá IA própria: melhora as escolhas e poderá gerar STLs. Ele controla o filamento e conversa com as duas K2."},
     conteudo:{n:"@caostf", d:"Conteúdo do negócio: banco de ideias virando posts e vídeos."},
     leiloes:{n:"bot de leilões", d:"Varre sites de leilão, avisa no Telegram e ajuda a dar o último lance no timing certo — espera o servidor 24h."},
     adguard:{n:"rede limpa (AdGuard)", d:"Bloqueia anúncios e domínios estranhos pra rede toda — roda no servidor 24h, ganho imediato."},
     energia:{n:"energia 24h", d:"Nobreak/bateria tipo camping agora (impressora e servidor não podem cair no meio do trabalho) e energia solar como próximo passo."},
-    ferramentas:{n:"ferramentas de marcenaria", d:"Duas serras (BOSCH meia esquadria + MAKITA circular), disco FREUD, kit de apoio e micro retífica — R$ 4.550,91 registrados."}
+    ferramentas:{n:"ferramentas de marcenaria", d:"Duas serras (BOSCH meia esquadria + MAKITA circular), disco FREUD, kit de apoio e micro retífica — e a lixadeira + router (tupia) entrando de forma provisória. Tudo registrado no financeiro."}
+  };
+  var topics = {
+    caos:["23 histórias no quadro (9 ativas + 14 em ideias)","2 K2 rodando e 12 aparelhos resgatados ganhando função","7 rotinas automáticas no ar"],
+    captura:["Recebe pelo grupo do Telegram, 24h por dia","Comprovantes que chegam no grupo já ficam guardados","Cada item vira arquivo no Drive com autor e data"],
+    inbox:["Toda mensagem vira arquivo no Drive","Compromissos e pendências saem daqui","É a matéria-prima do sistema"],
+    tarefas:["Lembrete vira compromisso, pedido vira card, ideia vira banco","Andam nos quadros das áreas: 3D · software · marcenaria","O vigia cobra todo dia às 08:00"],
+    conhecimento:["Vídeos baixados e transcritos com marcação de tempo","Dicas numeradas e organizadas por tema","O acervo vira preset, post e produto"],
+    presets:["Ficha por máquina + material, com peça de calibração","PETG laranja K2 base validado","Alimentam o Caos3D"],
+    modelos:["Cada peça modelada, testada e validada vira STL","Acervo pronto pra reimprimir","Alimenta o Caos3D"],
+    filamento:["Estoque controlado: PETG, PLA e ABS","Secagem antes de imprimir","Compra só quando precisa"],
+    secadora:["Geladeira adaptada + lâmpadas + sílica + sensor","O Arduino liga/desliga o aquecedor na meta","Em montagem: filamento sempre seco"],
+    k2base:["Base 260³: PLA/PETG e testes de perfil","Plus 350³: câmara fechada pra ABS e produção principal","As duas rodando em paralelo"],
+    marcenaria:["Móveis sob medida: fila única de projetos","Planos de corte cotados com furos","Montagem passo a passo no painel da oficina"],
+    madeira:["Pinus comprado + madeira reaproveitada","Passa no desengrosso antes de virar peça","Retalho vira nova peça"],
+    sustenta:["Reaproveitar madeira: nova vida ao descarte","Menos desperdício, mais peça","Parte da história da marca"],
+    painel:["Monitor touch no balcão","Planos de corte cotados + furos e vistas 3D","Status das 2 impressoras (V2.6, sem kanban)"],
+    catalogo:["12 produtos entre marcenaria e impressão 3D","Checkout pelo WhatsApp","Falta o cálculo de frete (peso/medidas)"],
+    anuncios:["Mercado Livre no ar; Shopee e TikTok em fila","Criados pela central, sem pular de painel","Taxas reais por canal entram no cálculo"],
+    central:["Anúncios em vários canais, sem painel externo","Taxas reais por canal aplicadas no preço","Análise & preço: cenários com ranking de custo"],
+    historias:["23 no quadro: 9 ativas + 14 em ideias","Cada frente com dono, progresso e área","Vault = registro · páginas = visualização"],
+    sessoes:["Prompts pré-prontos por pessoa","Cada sessão é uma tarefa a cumprir","Ex.: gerar móveis · triagem · conteúdo"],
+    clientes:["Chaveiro da Professora (34 un.) e outras encomendas reais","Suportes, expositores e móveis","Cada entrega vira caso no acervo"],
+    financeiro:["Toda entrada e saída com comprovante no mesmo dia","Conta CNPJ (C6) fecha batido","Rateios e ativos conciliados no Drive"],
+    servidor:["M1 headless já roda; montagem completa em andamento (1/6)","Nós: notes, celulares e pendrives resgatados","Case/expositor na fila — sem nuvem paga"],
+    nas:["Nuvem própria: arquivos, fotos e backups na casa","HDs e pendrives resgatados no armazenamento","Custo de nuvem: zero"],
+    ia:["Modelos locais: triagem, rascunho e transcrição","Sem gastar cota de serviço","Futuro: IA própria no Caos3D"],
+    vigia:["07:25 bom dia · 08:00 vigia · 03:00 backup","19:00 atividade · 21:00 links","Captura 3D à noite + servidor vivo"],
+    sucata:["MacBooks, celulares e notes parados ganhando função","Servidores, câmeras 24/7 e painéis","12 aparelhos resgatados"],
+    cyberdeck:["Celular antigo + teclado + case 3D da casa","Posto fixo pra oficina (docs, câmera)","Versão produto pra vender: ideia"],
+    kit:["Trilhas pra cada pessoa nova","Instalação + contexto + problemas comuns","Pausado — retoma com os próximos"],
+    caos3d:["Orçamento, fila, spools e custo por hora","Funcional — fase de divulgação (betas)","Futuro: IA própria (melhora escolhas, gera STLs)"],
+    conteudo:["Banco de ideias → calendário editorial","Conta com token, bio e print prontos","Piloto de posts destravado"],
+    leiloes:["Varre sites de leilão e avisa no grupo","Ajuda no último lance no timing certo","Espera o servidor 24h completo"],
+    adguard:["Bloqueia anúncios e domínios estranhos pra rede toda","Roda no servidor 24h","Ganho imediato"],
+    energia:["Nobreak/bateria estilo camping pras K2 e o servidor","Nada cai no meio do trabalho","Energia solar como próximo passo"],
+    ferramentas:["BOSCH meia esquadria + MAKITA circular","Disco FREUD 80 dentes + kit de apoio","Lixadeira + router (tupia) provisórios"]
   };
   var edges = [
     ["captura","inbox"],["inbox","conhecimento"],["conhecimento","presets"],
-    ["conhecimento","conteudo"],["presets","k2base"],["presets","k2plus"],
-    ["filamento","k2base"],["filamento","k2plus"],["secadora","filamento"],
-    ["k2base","catalogo"],["k2plus","catalogo"],["catalogo","clientes"],
-    ["anuncios","clientes"],["central","anuncios"],["meta30","central"],
+    ["conhecimento","conteudo"],["presets","k2base"],["presets","modelos"],
+    ["filamento","k2base"],["secadora","filamento"],
+    ["k2base","catalogo"],["catalogo","clientes"],
+    ["anuncios","clientes"],["central","anuncios"],
     ["marcenaria","catalogo"],["madeira","marcenaria"],["painel","marcenaria"],
-    ["painel","k2plus"],["painel","k2base"],["sucata","servidor"],["servidor","vigia"],["servidor","nas"],
+    ["painel","k2base"],["sucata","servidor"],["servidor","vigia"],["servidor","nas"],
     ["servidor","ia"],["servidor","captura"],["vigia","financeiro"],["clientes","financeiro"],
-    ["caos3d","k2plus"],["cyberdeck","sucata"],["cyberdeck","catalogo"],["marcenaria","clientes"],
+    ["caos3d","modelos"],["cyberdeck","sucata"],["cyberdeck","catalogo"],["marcenaria","clientes"],
     ["kit","conhecimento"],["conteudo","clientes"],
     ["ferramentas","marcenaria"],["ferramentas","madeira"],["servidor","adguard"],
-    ["energia","servidor"],["energia","k2base"],["energia","k2plus"],
+    ["energia","servidor"],["energia","k2base"],
     ["leiloes","servidor"],["leiloes","captura"],
     ["presets","caos3d"],["conhecimento","caos3d"],["caos3d","filamento"],["caos3d","k2base"],
-    ["inbox","tarefas"],["tarefas","vigia"]
+    ["inbox","tarefas"],["tarefas","vigia"],
+    ["historias","tarefas"],["historias","vigia"],
+    ["sessoes","conhecimento"],["sessoes","kit"],["sessoes","tarefas"],
+    ["madeira","sustenta"],["modelos","k2base"]
   ].map(function(e){return e[0]+"|"+e[1];});
   var cloud = document.getElementById("cloud");
   var svg = document.getElementById("cloud-svg");
@@ -415,19 +481,19 @@
   var team = {
     murilo:{n:"Murilo", role:"dono", color:"#F97316", all:true, core:["caos"],
       story:"Em todas as frentes da casa: captura as ideias todos os dias, decide o que entra e o que sai e fecha os números. A história dele é o mapa inteiro — do caos à venda, fio por fio.",
-      flow:["caos","captura","inbox","tarefas","conhecimento","kit","presets","filamento","secadora","k2base","k2plus","caos3d","painel","marcenaria","madeira","ferramentas","catalogo","cyberdeck","anuncios","central","meta30","clientes","financeiro","vigia","servidor","nas","ia","adguard","energia","leiloes","sucata","conteudo"]},
+      flow:["caos","captura","inbox","tarefas","historias","conhecimento","kit","sessoes","presets","modelos","filamento","secadora","k2base","caos3d","painel","marcenaria","madeira","sustenta","ferramentas","catalogo","cyberdeck","anuncios","central","clientes","financeiro","vigia","servidor","nas","ia","adguard","energia","leiloes","sucata","conteudo"]},
     lucas:{n:"Lucas", role:"sócio técnico", color:"#9D7BFF",
       story:"A madeira passa no desengrosso e vira móvel no painel da oficina; o hardware Apple resgatado passa pelas mãos dele antes de virar nó do servidor; e cada bastidor vira vídeo pro @caostf.",
-      nodes:["marcenaria","madeira","ferramentas","painel","conteudo","sucata"],
-      flow:["madeira","ferramentas","marcenaria","painel","k2base","k2plus","sucata","conteudo","catalogo","clientes"]},
+      nodes:["marcenaria","madeira","sustenta","ferramentas","painel","conteudo","sucata"],
+      flow:["madeira","sustenta","ferramentas","marcenaria","painel","k2base","sucata","conteudo","catalogo","clientes"]},
     ygor:{n:"Ygor", role:"central + conteúdo", color:"#0FA3A3",
-      story:"A central dispara: anúncio criado sem painel, publicado no Mercado Livre, cliente chegando — com a meta de 30 anúncios até 31/10 correndo por esses fios. 100% CaosTF desde 14/10.",
-      nodes:["central","anuncios","meta30","clientes"],
-      flow:["central","anuncios","meta30","clientes","catalogo","financeiro"]},
+      story:"A central dispara: anúncio criado sem painel, publicado no Mercado Livre, cliente chegando — com a mão na massa no 3D e na marcenaria correndo por esses fios. 100% CaosTF desde 14/10.",
+      nodes:["central","anuncios","clientes","marcenaria","k2base"],
+      flow:["central","anuncios","clientes","catalogo","financeiro","marcenaria","k2base"]},
     jef:{n:"Jef", role:"infraestrutura", color:"#63B27A",
       story:"Os aparelhos resgatados viram nós: o bot captura sem parar, o NAS guarda, a IA local tria e a rede limpa bloqueia — com energia reserva pra nada cair. Com isso no ar, os bots de oportunidade (leilões) saem do papel.",
       nodes:["sucata","servidor","nas","ia","adguard","energia","leiloes","captura"],
-      flow:["sucata","energia","servidor","captura","nas","ia","adguard","vigia","leiloes","k2base","k2plus"]},
+      flow:["sucata","energia","servidor","captura","nas","ia","adguard","vigia","leiloes","k2base"]},
     victor:{n:"Victor", role:"conteúdo · seo", color:"#9CC3FF",
       story:"Banco de ideias → calendário editorial → roteiro da semana no @caostf. O alcance que o algoritmo premia traz gente nova pra loja e pros anúncios — constância virando chegada de cliente.",
       nodes:["conteudo","catalogo","clientes"],
@@ -435,9 +501,9 @@
     marcos:{n:"Marcos", role:"saas · Caos3D", color:"#E8B23A",
       story:"O acervo da casa alimenta o Caos3D e volta como ferramenta: orçamento, fila e custo pra quem vende impressão 3D — o app controla o filamento e conversa com as duas K2. Marcos toca o SaaS.",
       nodes:["caos3d"],
-      flow:["conhecimento","presets","caos3d","filamento","k2base","k2plus"]}
+      flow:["conhecimento","presets","caos3d","filamento","k2base"]}
   };
-  var hintHTML = '<span class="cloud-hint">Toque numa palavra do mapa: a ligação acende e a explicação aparece aqui. Ou clique numa pessoa do time.</span>';
+  var hintHTML = '<span class="cloud-hint">Passe o mouse numa palavra pra ver a prévia; clique pra abrir o painel lateral em tópicos. Ou clique numa pessoa do time.</span>';
   var els = {}; var mobEls = {}; var neighbors = {}; var sel = null; var selP = null;
   var RM = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   var memb = {};
@@ -485,21 +551,19 @@
       setClasses(id, id === k, !!k && id !== k && neigh.indexOf(id) !== -1);
     });
     resetLines();
-    if(!k){ info.innerHTML = hintHTML; return; }
+    if(!k){ closePanel(); return; }
     (void cloud.offsetWidth);
     lines.forEach(function(l){
       var p = l.dataset.edge.split("|");
       if(p[0] === k || p[1] === k) l.classList.add("lit");
     });
-    var w = words[k] || {n:k, d:""};
-    var conn = neighbors[k].map(function(id){ return (words[id] ? words[id].n : id); }).join(" · ") || "—";
-    info.innerHTML = "<b>" + w.n + "</b> — " + w.d + '<div class="cloud-hint" style="margin-top:6px">liga com: ' + conn + "</div>";
+    openPanelWord(k);
   }
   function selectPerson(p, instant){
     sel = null; selP = p; setStrip();
     resetLines(); (void cloud.offsetWidth);
     Object.keys(words).forEach(function(id){ setClasses(id, false, false); });
-    if(!p){ document.body.style.removeProperty("--pc"); info.innerHTML = hintHTML; return; }
+    if(!p){ document.body.style.removeProperty("--pc"); closePanel(); return; }
     var t = team[p];
     document.body.style.setProperty("--pc", t.color);
     var S = t.all ? Object.keys(words) : t.nodes;
@@ -531,11 +595,50 @@
         l.classList.add("lit");
       });
     });
-    var chain = t.all ? "o mapa inteiro — 32 palavras, todos os fios" :
+    var chain = t.all ? "o mapa inteiro — 34 palavras, todos os fios" :
       t.flow.filter(function(id){ return S.indexOf(id) !== -1; }).map(function(id){ return words[id] ? words[id].n : id; }).join(" → ");
-    info.innerHTML = "<b style=\"color:" + t.color + "\">" + t.n + " — " + t.role + "</b> — " + t.story +
-      '<div class="cloud-hint" style="margin-top:6px">os fios dela acendem em sequência: ' + chain + "</div>";
+    openPanelPerson(p, t, chain);
   }
+  var side = document.getElementById("side"), sideBody = document.getElementById("side-body");
+  var pop = document.createElement("div"); pop.id = "wpop"; document.body.appendChild(pop);
+  function shortE(s){ return s.length > 122 ? s.slice(0,119).replace(/\s+\S*$/, "") + "…" : s; }
+  function closePanel(){ side.classList.remove("open"); side.setAttribute("aria-hidden","true"); }
+  function linkChips(k){
+    return (neighbors[k] || []).map(function(id){
+      return '<button class="chip" type="button" data-go="' + id + '">' + (words[id] ? words[id].n : id) + '</button>';
+    }).join("");
+  }
+  function wireChips(){ sideBody.querySelectorAll(".chip").forEach(function(c){ c.addEventListener("click", function(){ select(c.dataset.go); }); }); }
+  function openPanelWord(k){
+    var w = words[k] || {n:k, d:""};
+    var ph = "<h3>" + w.n + "</h3><p>" + w.d + "</p>";
+    var t = topics[k] || [];
+    if(t.length) ph += '<div class="spt">Hoje:</div><ul>' + t.map(function(x){ return "<li>" + x + "</li>"; }).join("") + "</ul>";
+    ph += '<div class="spt">Liga com:</div><div class="chips">' + (linkChips(k) || '<span class="cloud-hint">—</span>') + "</div>";
+    sideBody.innerHTML = ph; wireChips();
+    pop.style.display = "none";
+    side.classList.add("open"); side.setAttribute("aria-hidden","false");
+  }
+  function openPanelPerson(p, t, chain){
+    sideBody.innerHTML = '<h3 style="color:' + t.color + '">' + t.n + ' <span class="prole">' + t.role + "</span></h3><p>" + t.story + "</p>" +
+      '<div class="spt">os fios acendem em sequência:</div><div class="schain">' + chain + "</div>";
+    pop.style.display = "none";
+    side.classList.add("open"); side.setAttribute("aria-hidden","false");
+  }
+  document.getElementById("side-close").addEventListener("click", function(){ select(null); });
+  Object.keys(els).forEach(function(k){
+    var w = els[k]; if(!w || w.classList.contains("center")) return;
+    w.addEventListener("mouseenter", function(){
+      var o = words[k]; if(!o) return;
+      pop.innerHTML = "<b>" + o.n + "</b> — " + shortE(o.d);
+      pop.style.display = "block";
+      var r = w.getBoundingClientRect();
+      var top = r.bottom + 8; if(top + 70 > window.innerHeight) top = r.top - 66;
+      pop.style.top = top + "px";
+      pop.style.left = Math.max(8, Math.min(r.left, window.innerWidth - 336)) + "px";
+    });
+    w.addEventListener("mouseleave", function(){ pop.style.display = "none"; });
+  });
   cloud.addEventListener("click", function(){ select(null); });
   document.addEventListener("keydown", function(ev){ if(ev.key === "Escape") select(null); });
   window.addEventListener("resize", function(){ clearTimeout(window._cdz); window._cdz = setTimeout(draw, 120); });
